@@ -25,15 +25,15 @@ import (
 	metricsink "k8s.io/heapster/metrics/sinks/metric"
 	nodemetricsstorage "k8s.io/heapster/metrics/storage/nodemetrics"
 	podmetricsstorage "k8s.io/heapster/metrics/storage/podmetrics"
-	"k8s.io/heapster/metrics/apis/metrics"
-	_ "k8s.io/heapster/metrics/apis/metrics/install"
-	"k8s.io/heapster/metrics/apis/metrics/v1alpha1"
+	"k8s.io/metrics/pkg/apis/metrics"
+	_ "k8s.io/metrics/pkg/apis/metrics/install"
+	"k8s.io/metrics/pkg/apis/metrics/v1alpha1"
 )
 
 func installMetricsAPIs(s *options.HeapsterRunOptions, g *genericapiserver.GenericAPIServer,
 	metricSink *metricsink.MetricSink, nodeLister v1listers.NodeLister, podLister v1listers.PodLister) {
 
-	apiGroupInfo := genericapiserver.NewDefaultAPIGroupInfo(metrics.GroupName, api.Registry, api.Scheme, api.ParameterCodec, api.Codecs)
+	apiGroupInfo := genericapiserver.NewDefaultAPIGroupInfo("metrics.k8s.io", api.Registry, api.Scheme, api.ParameterCodec, api.Codecs)
 
 	nodemetricsStorage := nodemetricsstorage.NewStorage(metrics.Resource("nodemetrics"), metricSink, nodeLister)
 	podmetricsStorage := podmetricsstorage.NewStorage(metrics.Resource("podmetrics"), metricSink, podLister)
