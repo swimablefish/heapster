@@ -25,9 +25,9 @@ import (
 	metricsink "k8s.io/heapster/metrics/sinks/metric"
 	nodemetricsstorage "k8s.io/heapster/metrics/storage/nodemetrics"
 	podmetricsstorage "k8s.io/heapster/metrics/storage/podmetrics"
-	"k8s.io/metrics/pkg/apis/metrics"
-	_ "k8s.io/metrics/pkg/apis/metrics/install"
-	"k8s.io/metrics/pkg/apis/metrics/v1alpha1"
+	"k8s.io/heapster/metrics/apis/metrics"
+	_ "k8s.io/heapster/metrics/apis/metrics/install"
+	"k8s.io/heapster/metrics/apis/metrics/v1alpha1"
 )
 
 func installMetricsAPIs(s *options.HeapsterRunOptions, g *genericapiserver.GenericAPIServer,
